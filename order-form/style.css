@@ -76,6 +76,8 @@ form ul li{
 
 form ul li span{
 	float:right;
+	display: inline-block;
+
 }
 
 form ul li.active{
