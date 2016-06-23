@@ -36,7 +36,9 @@ app.filter('searchFor', function(){
 // The controller
 
 function InstantSearchController($scope){
+	// default to Alphabetical sort.
    $scope.sortOption = "Alphabetical";
+	 // names = sort option list
    $scope.names = ["Alphabetical","approvalRating"] ;
 
 	// The data model. These items would normally be requested via AJAX,
