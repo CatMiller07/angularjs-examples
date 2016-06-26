@@ -33,13 +33,45 @@ app.filter('searchFor', function(){
 
 });
 
+// Define filter myOrderBy
+ app.filter('myOrderBy',function(){
+
+    return function(arr,sortOption){
+				var result = arr;
+
+			   if(!sortOption){
+			       	return result;
+			    } ;
+	        switch (sortOption) {
+	        	case "approvalRating+" :
+	        		  return result.sort(function(a,b){
+									      if (a.approvalRating < b.approvalRating) return -1;
+										   	if (a.approvalRating > b.approvalRating) return 1;
+										  	return 0;
+							        	});
+						case "approvalRating-" :
+	        		  return result.sort(function(a,b){
+									        if (a.approvalRating < b.approvalRating) return 1;
+										    	if (a.approvalRating > b.approvalRating) return -1;
+										    	return 0;
+								       });
+	        	default:
+						return result.sort(function(a,b){
+									if (a.title < b.title) return -1;
+									if (a.title > b.title) return 1;
+									return 0;
+					     	});
+	        };
+		};
+
+ });
 // The controller
 
 function InstantSearchController($scope){
 	// default to Alphabetical sort.
-   $scope.sortOption = "Alphabetical";
+   $scope.sortOption = "By Name";
 	 // names = sort option list
-   $scope.names = ["Alphabetical","approvalRating"] ;
+   $scope.names = ["By Name","approvalRating+","approvalRating-"] ;
 
 	// The data model. These items would normally be requested via AJAX,
 	// but are hardcoded here for simplicity. See the next example for
